@@ -64,6 +64,9 @@ table {
 }
 
 #todos-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 93vh;
 	width: 80vw;
 	background-color: lightsalmon;
@@ -125,4 +128,32 @@ table {
 	border-style: none;
 	width: 10vw;
 	background-color: green;
+}
+
+.todo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 3vh;
+	width: 50vw;
+	height: 5vh;
+	background-color: lightgray;
+}
+
+.check-it-off {
+	margin-left: 1vh;
+	height: 4vh;
+	width: 4vh;
+	border-style: solid;
+	border-radius: 50%;
+	border-width: 1px;
+}
+
+.todo-title {
+	margin-left: 3vh;
+}
+
+.todo-left {
+	display: flex;
+	align-items: center;
 }
