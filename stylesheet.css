@@ -111,6 +111,9 @@ table {
 .project-button {
 	font-size: 3vh;
 	margin-left: 1vw;
+	height: 6vh;
+	width: 13vw;
+	margin-top: 4vh;
 }
 
 .hyphen {
@@ -156,4 +159,11 @@ table {
 .todo-left {
 	display: flex;
 	align-items: center;
+}
+
+.todo-project-details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5vh;
 }
