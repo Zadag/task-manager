@@ -130,7 +130,7 @@ table {
 	border-radius: 10px;
 	border-style: none;
 	width: 10vw;
-	background-color: green;
+	background-color: rgb(89, 209, 89);
 }
 
 .todo {
@@ -140,7 +140,12 @@ table {
 	margin-top: 3vh;
 	width: 50vw;
 	height: 5vh;
-	background-color: lightgray;
+	border-radius: 10px;
+	background-color: lightblue;
+}
+
+.todo-icon {
+	margin-right: 2vh;
 }
 
 .check-it-off {
@@ -166,4 +171,18 @@ table {
 	flex-direction: column;
 	align-items: center;
 	margin-top: 5vh;
+}
+
+.todo-project-header {
+	font-size: 6vh;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.todo-project-about {
+	font-size: 3vh;
+}
+
+.new-todo-button {
+	margin-top: 3vh;
 }
