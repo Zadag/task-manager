@@ -116,6 +116,15 @@ table {
 	margin-top: 4vh;
 }
 
+.project-button-selected {
+	font-size: 3vh;
+	margin-left: 1vw;
+	height: 6vh;
+	width: 13vw;
+	margin-top: 4vh;
+	background-color: lightgray;
+}
+
 .hyphen {
 	height: 1px;
 	width: 1vw;
@@ -185,4 +194,39 @@ table {
 
 .new-todo-button {
 	margin-top: 3vh;
+}
+
+.new-project-modal {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	height: 30vh;
+	width: 40vw;
+	background-color: gray;
+}
+
+.new-project-modal-title {
+	height: 5vh;
+	width: 25vw;
+}
+
+.new-project-modal-description {
+	height: 15vh;
+	width: 25vw;
+}
+
+.new-project-modal-buttons {
+	display: flex;
+}
+
+.new-project-modal-submit {
+	background-color: lightgreen;
+	height: 5vh;
+	width: 7vw;
+}
+
+.new-project-modal-cancel {
+	background-color: rgb(238, 62, 62);
+	height: 5vh;
+	width: 7vw;
 }
