@@ -1,12 +1,12 @@
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, em, img, input, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, caption, tbody, textarea, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
@@ -197,12 +197,15 @@ table {
 }
 
 .new-project-modal {
+	left: 50%;
+	top: 25%;
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	height: 30vh;
-	width: 40vw;
+	height: 25vh;
+	width: 25vw;
 	background-color: gray;
+	transform: translateX(-50%);
 }
 
 .new-project-modal-title {
@@ -213,6 +216,7 @@ table {
 .new-project-modal-description {
 	height: 15vh;
 	width: 25vw;
+	resize: none;
 }
 
 .new-project-modal-buttons {
@@ -222,11 +226,11 @@ table {
 .new-project-modal-submit {
 	background-color: lightgreen;
 	height: 5vh;
-	width: 7vw;
+	width: 50%;
 }
 
 .new-project-modal-cancel {
 	background-color: rgb(238, 62, 62);
 	height: 5vh;
-	width: 7vw;
+	width: 50%;
 }
