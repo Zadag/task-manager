@@ -1,3 +1,5 @@
+import { addProjToArr } from './projects'
+
 const newProject = () => {
     const content = document.querySelector('#content');
 
@@ -37,6 +39,8 @@ const newProject = () => {
 
     submit.addEventListener('click', () => {
         console.log('make project');
+        //function to make new project
+        addProjToArr(title.textContent, description.textContent);
         removeModal();
     });
     cancel.addEventListener('click', removeModal);
