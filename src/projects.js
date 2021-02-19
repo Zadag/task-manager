@@ -11,7 +11,7 @@ const addProjToArr = (title, desc) => {
 }
 
 const addTodoToProj = (proj, title, desc, date, prio) => {
-    proj.todo = { title, desc, date, prio };
+    proj.todoArr = { title, desc, date, prio };
 }
 
 

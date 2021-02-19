@@ -1,7 +1,8 @@
-import { newProject } from './newProjectModal'
+import { newProjectModal } from './DOMMethods'
+import { projectArr } from './projects';
 
 const content = document.querySelector('#content');
 
 
 const newProjectButton = document.querySelector('.new-project');
-newProjectButton.addEventListener('click', newProject);
+newProjectButton.addEventListener('click', newProjectModal);
