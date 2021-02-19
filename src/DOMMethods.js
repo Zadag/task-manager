@@ -2,6 +2,9 @@ import { addProjToArr, projectArr } from './projects'
 
 const newProjectModal = () => {
     const content = document.querySelector('#content');
+    const newProjectButton = document.querySelector('.new-project');
+
+    newProjectButton.removeEventListener
 
     console.log('running');
     const modal = document.createElement('div');
@@ -38,26 +41,49 @@ const newProjectModal = () => {
     }
 
     submit.addEventListener('click', () => {
-        //function to make new project
+        //function to store new project in projects.js
         addProjToArr(title.value, description.value);
-        addProjectToDOM(title.value);
+        removeProjectsFromDom();
+        addProjectsToDom();
         removeModal();
-        console.log(projectArr);
     });
     cancel.addEventListener('click', removeModal);
 };
 
-const addProjectToDOM = (projectTitle) => {
-    const projectsContainer = document.querySelector('#projects-container');
-    const projectDiv = document.createElement('div');
-    const projectButton = document.createElement('button');
-    projectDiv.classList.add('project');
-    projectButton.classList.add('project-button');
+const selectProject = (e) => {
+    console.log(`This is ${e.target.textContent}`);
 
-    projectsContainer.appendChild(projectDiv);
-    projectDiv.appendChild(projectButton);
-    console.log(projectTitle);
-    projectButton.textContent = projectTitle;
+
+    //e.target.classList.toggle('project-button');
+    e.target.classList.toggle('project-button-selected');
+}
+
+const addProjectsToDom = () => {
+    for(let i=0; i<projectArr.length; i++ ){
+        const projectsContainer = document.querySelector('#projects-container');
+        const projectDiv = document.createElement('div');
+        const projectButton = document.createElement('button');
+        projectDiv.classList.add('project');
+        projectButton.classList.add('project-button');
+    
+        projectsContainer.appendChild(projectDiv);
+        projectDiv.appendChild(projectButton);
+        console.log(projectArr);
+        projectButton.textContent = projectArr[i].title;
+    
+        projectButton.addEventListener('click', selectProject);
+    }
+}
+
+const removeProjectsFromDom = () => {
+    const projectsList = document.querySelectorAll('.project');
+    console.log(projectsList);
+    const projectsContainer = document.querySelector('#projects-container');
+    projectsList.forEach(element => {
+        if(element.getAttribute('class') === 'project'){
+            projectsContainer.removeChild(projectsContainer.lastChild);
+        }
+    })
 }
 
 export {newProjectModal} ;
