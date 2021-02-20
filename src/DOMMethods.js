@@ -64,8 +64,13 @@ const addProjectsToDom = () => {
         const projectDiv = document.createElement('div');
         const projectButton = document.createElement('button');
         projectDiv.classList.add('project');
-        projectButton.classList.add('project-button');
-    
+        
+        if(projectArr[i].selected === true){
+            projectButton.classList.add('project-button-selected');
+        }else {
+            projectButton.classList.add('project-button');
+        }
+
         projectsContainer.appendChild(projectDiv);
         projectDiv.appendChild(projectButton);
         console.log(projectArr);
@@ -77,12 +82,11 @@ const addProjectsToDom = () => {
 
 const removeProjectsFromDom = () => {
     const projectsList = document.querySelectorAll('.project');
-    console.log(projectsList);
     const projectsContainer = document.querySelector('#projects-container');
+    
     projectsList.forEach(element => {
-        if(element.getAttribute('class') === 'project'){
-            projectsContainer.removeChild(projectsContainer.lastChild);
-        }
+        console.log(`This is the element : ${element}`);
+        projectsContainer.removeChild(element);
     })
 }
 

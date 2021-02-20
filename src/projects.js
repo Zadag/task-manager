@@ -1,9 +1,16 @@
 
 
-const projectArr = [];
+const projectArr = [
+    {
+        title: 'Default',
+        desc: '',
+        selected: true,
+        todoArr: [],
+    }
+];
 
 const projectFactory = (title, desc) => {
-    return { title, desc, todoArr: [] };
+    return { title, desc, selected: false, todoArr: [] };
 }
 
 const addProjToArr = (title, desc) => {
