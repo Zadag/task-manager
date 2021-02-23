@@ -1,7 +1,7 @@
 
 
 const projectArr = [
-    {
+   {
         title: 'Default',
         desc: '',
         selected: true,
@@ -18,9 +18,19 @@ const addProjToArr = (title, desc) => {
 }
 
 const addTodoToProj = (proj, title, desc, date, prio) => {
-    proj.todoArr = { title, desc, date, prio };
+    proj.todoArr.push({ title, desc, date, prio });
+}
+
+const updateProjectSelect = (projectName) => {
+    projectArr.forEach(project => {
+        if(project.title === projectName){
+            project.selected = true;
+        }else {
+            project.selected = false
+        }
+    })
 }
 
 
-export { addProjToArr, addTodoToProj, projectArr };
+export { addProjToArr, addTodoToProj, updateProjectSelect, projectArr };
 

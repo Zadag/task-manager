@@ -1,4 +1,4 @@
-import { addProjToArr, projectArr } from './projects'
+import { addProjToArr, updateProjectSelect, projectArr } from './projects'
 
 const newProjectModal = () => {
     const content = document.querySelector('#content');
@@ -40,22 +40,21 @@ const newProjectModal = () => {
         content.removeChild(modal);
     }
 
+    //function to store new project in projects.js
     submit.addEventListener('click', () => {
-        //function to store new project in projects.js
+        
         addProjToArr(title.value, description.value);
-        removeProjectsFromDom();
-        addProjectsToDom();
+        renderProjects();
         removeModal();
     });
     cancel.addEventListener('click', removeModal);
 };
 
 const selectProject = (e) => {
-    console.log(`This is ${e.target.textContent}`);
-
-
-    //e.target.classList.toggle('project-button');
-    e.target.classList.toggle('project-button-selected');
+    if(e.target.getAttribute('class') === 'project-button'){
+        updateProjectSelect(e.target.textContent);
+        renderProjects();
+    }
 }
 
 const addProjectsToDom = () => {
@@ -85,9 +84,13 @@ const removeProjectsFromDom = () => {
     const projectsContainer = document.querySelector('#projects-container');
     
     projectsList.forEach(element => {
-        console.log(`This is the element : ${element}`);
         projectsContainer.removeChild(element);
     })
+}
+
+const renderProjects = () => {
+    removeProjectsFromDom();
+    addProjectsToDom();
 }
 
 export {newProjectModal} ;
