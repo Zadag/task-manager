@@ -106,4 +106,20 @@ const renderProjectContent = () => {
 
 }
 
+const createTodoElements = (title, desc, date, prio, completed) => {
+    const todo = document.createElement('div');
+    const todoLeft = document.createElement('div');
+    const todoRight = document.createElement('div');
+
+    const checkItOff = docuemnt.createElement('div');
+    const todoTitle = document.createElement('p');
+    const dueDate = document.createElement('p');
+    const todoIconEdit = document.createElement('img');
+    const todoIconDelete = document.createElement('img');
+
+    
+
+
+}
+
 export {newProjectModal, renderProjects} ;
