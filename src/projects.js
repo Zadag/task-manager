@@ -15,8 +15,8 @@ const addProjToArr = (title, desc, projId) => {
     projectArr.push(projectFactory(title, desc, projId));
 }
 
-const addTodoToProj = (proj, title, desc, date, prio) => {
-    proj.todoArr.push({ title, desc, date, prio });
+const addTodoToProj = (proj, todoId, title, desc, date, completed) => {
+    proj.todoArr.push({ todoId, title, desc, date, completed });
 }
 
 const updateProjectSelect = (projectId) => {
@@ -29,16 +29,29 @@ const updateProjectSelect = (projectId) => {
     })
 }
 
-const generateProjectId = () => {
+const generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 const init = () => {
-    addProjToArr('Default', 'This is a default project', generateProjectId());
+    addProjToArr('Default', 'This is a default project', generateUniqueId());
+    addTodoToProj(projectArr[0], '_yilklj', 'test', 'testing', 'date', false);
     renderProjects();
 }
 
+const getProjectDetails = (project) => {
+    console.log('this' + project);
+    console.log(projectArr);
+    let projectObject = {};
+    projectArr.forEach(proj => {
+        if(proj.projId === project){
+            projectObject = proj;
+            console.log(projectObject);
+        }
+    })
+    return projectObject;
+}
 
 
-export { init, addProjToArr, addTodoToProj, generateProjectId, updateProjectSelect, projectArr };
+export { init, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 

@@ -1,4 +1,4 @@
-import { addProjToArr, updateProjectSelect, projectArr, generateProjectId } from './projects'
+import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId } from './projects'
 
 const newProjectModal = () => {
     const content = document.querySelector('#content');
@@ -6,7 +6,7 @@ const newProjectModal = () => {
 
     newProjectButton.removeEventListener
 
-    console.log('running');
+    
     const modal = document.createElement('div');
     const title = document.createElement('input');
     const description = document.createElement('textarea');
@@ -42,7 +42,7 @@ const newProjectModal = () => {
 
     //Adds project to projects.js and updates DOM
     submit.addEventListener('click', () => {
-        addProjToArr(title.value, description.value, generateProjectId());
+        addProjToArr(title.value, description.value, generateUniqueId());
         renderProjects();
         removeModal();
     });
@@ -53,7 +53,7 @@ const selectProject = (e) => {
     if(e.target.getAttribute('class') === 'project-button'){
         updateProjectSelect(e.target.getAttribute('data-id'));
         renderProjects();
-        
+        renderProjectContent(e.target.getAttribute('data-id'));
     }
 }
 
@@ -74,7 +74,7 @@ const addProjectsToDom = () => {
 
         projectsContainer.appendChild(projectDiv);
         projectDiv.appendChild(projectButton);
-        console.log(projectArr);
+        
         projectButton.textContent = projectArr[i].title;
     
         projectButton.addEventListener('click', selectProject);
@@ -95,56 +95,125 @@ const renderProjects = () => {
     addProjectsToDom();
 }
 
-const renderProjectContent = () => {
+const renderProjectContent = (project) => {
+    removeTodoContentFromDom();
     //Get project title and desc
-    //Get todos from project
-    //Create Dom elements for all of this
-    //Add new task button
-    //Add event listener to new task button
-    //Add event listeners to todo edit and delete buttons
-    //
+    
+    if(getProjectDetails(project)){
+        const projectDetails = getProjectDetails(project);
+        const projectTitle = projectDetails.title;
+        const projectDesc = projectDetails.desc;
+        //Get todos from project
+        const projectTodoArr = projectDetails.todoArr;
+        console.log(projectTodoArr);
+        createTodoElements(projectTodoArr);
+        //Add new task button
+        //Add event listener to new task button
+        //Add event listeners to todo edit and delete buttons
+        //        
+    }
 
 }
 
-const createTodoElements = (title, desc, date, completed) => {
-    const todo = document.createElement('div');
-    const todoLeft = document.createElement('div');
-    const todoRight = document.createElement('div');
-    const checkItOff = docuemnt.createElement('div');
-    const todoTitle = document.createElement('p');
-    const dueDate = document.createElement('p');
-    const todoIconEdit = document.createElement('img');
-    const todoIconDelete = document.createElement('img');
+const createTodoElements = (todoArr) => {
+    console.log(todoArr);
+    todoArr.forEach(todoObject => {
+        const todosContainer = document.querySelector('#todos-container');
+        const todo = document.createElement('div');
+        const todoLeft = document.createElement('div');
+        const todoRight = document.createElement('div');
+        const checkItOff = document.createElement('div');
+        const todoTitle = document.createElement('p');
+        const dueDate = document.createElement('p');
+        const todoIconEdit = document.createElement('img');
+        const todoIconDelete = document.createElement('img');
+    
+        todo.classList.add('todo');
+        todoLeft.classList.add('todo-left');
+        todoRight.classList.add('todo-right');
+    
+        if(todoObject.completed === true){
+            checkItOff.classList.add('checked-off');
+        }else{
+            checkItOff.classList.add('check-it-off');
+        }
+    
+        todoTitle.classList.add('todo-title');
+        dueDate.classList.add('due-date');
+        todoIconEdit.classList.add('todo-icon');
+        todoIconDelete.classList.add('todo-icon');
+    
+        todoIconEdit.src = 'icons/edit.png';
+        todoIconDelete.src = 'icons/trash.png';
+    
+        todoTitle.textContent = todoObject.title;
+        dueDate.textContent = todoObject.date;
+    
+        todosContainer.appendChild(todo);
+        todo.appendChild(todoLeft);
+        todo.appendChild(todoRight);
+        todoLeft.appendChild(checkItOff);
+        todoLeft.appendChild(todoTitle);
+        todoRight.appendChild(dueDate);
+        todoRight.appendChild(todoIconEdit);
+        todoRight.appendChild(todoIconDelete);
+    
+        todoIconEdit.addEventListener('click', () => {
+            //launch modal
+        })
+    
+        todoIconDelete.addEventListener('click', () => {
+            //Remove this todo from project.todos
+            //Render todos
+        })
+    })
 
-    todo.classList.add('todo');
-    todoLeft.classList.add('todo-left');
-    todoRight.classList.add('todo-right');
+}
 
-    if(completed === true){
-        checkItOff.classList.add('checked-off');
-    }else{
-        checkItOff.classList.add('check-it-off');
+const editTodoModal = () => {
+    const content = document.querySelector('#content');
+
+    const modalContainer = document.createElement('div');
+    const titleInput = document.createElement('input');
+    const descInput = document.createElement('input');
+    const dateInput = document.createElement('input');
+    const submit = document.createElement('button');
+    const cancel = document.createElement('button');
+
+    modalContainer.classList.add('todo-modal-container');
+    titleInput.classList.add('todo-modal-title');
+    descInput.classList.add('todo-modal-desc');
+    dateInput.classList.add('todo-modal-date');
+    submit.classList.add('todo-modal-submit');
+    cancel.classList.add('todo-modal-cancel');
+
+    titleInput.type = 'text';
+    descInput.type = 'text';
+    dateInput.type = 'date';
+
+    content.appendChild(modalContainer);
+    modalContainer.appendChild(titleInput);
+    modalContainer.appendChild(descInput);
+    modalContainer.appendChild(dateInput);
+    modalContainer.appendChild(submit);
+    modalContainer.appendChild(cancel);
+
+    submit.addEventListener('click', () => {
+        //update project.todo
+        //render todos
+    })
+    cancel.addEventListener('click', () => {
+        content.removeChild(modalContainer);
+    })
+
+}
+
+const removeTodoContentFromDom = () => {
+    const todosContainer = document.querySelector('#todos-container');
+    while(todosContainer.firstChild){
+        todosContainer.removeChild(todosContainer.firstChild);
     }
-
-    todoTitle.classList.add('todo-title');
-    dueDate.classList.add('due-date');
-    todoIconEdit.classList.add('todo-icon');
-    todoIconDelete.classList.add('todo-icon');
-
-    todoIconEdit.src = 'icons/edit.png';
-    todoIconDelete.src = 'icons/trash.png';
-
-    todoTitle.textContent = title;
-    dueDate.textContent = date;
-
-    todoIconEdit.addEventListener('click', () => {
-        //launch modal
-    })
-
-    todoIconDelete.addEventListener('click', () => {
-        //Remove this todo from project.todos
-        //Re-render todos
-    })
+    console.log('content removed');
 }
 
 export {newProjectModal, renderProjects} ;
