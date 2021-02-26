@@ -1,5 +1,5 @@
 import { newProjectModal } from './DOMMethods'
-import { projectArr } from './projects';
+import { projectArr, init } from './projects';
 
 const content = document.querySelector('#content');
 console.log(projectArr);
@@ -11,3 +11,5 @@ newProjectButton.addEventListener('click', () => {
         newProjectModal();
     }
 });
+
+init();

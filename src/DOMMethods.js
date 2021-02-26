@@ -1,4 +1,4 @@
-import { addProjToArr, updateProjectSelect, projectArr } from './projects'
+import { addProjToArr, updateProjectSelect, projectArr, generateProjectId } from './projects'
 
 const newProjectModal = () => {
     const content = document.querySelector('#content');
@@ -40,10 +40,9 @@ const newProjectModal = () => {
         content.removeChild(modal);
     }
 
-    //function to store new project in projects.js
+    //Adds project to projects.js and updates DOM
     submit.addEventListener('click', () => {
-        
-        addProjToArr(title.value, description.value);
+        addProjToArr(title.value, description.value, generateProjectId());
         renderProjects();
         removeModal();
     });
@@ -52,8 +51,9 @@ const newProjectModal = () => {
 
 const selectProject = (e) => {
     if(e.target.getAttribute('class') === 'project-button'){
-        updateProjectSelect(e.target.textContent);
+        updateProjectSelect(e.target.getAttribute('data-id'));
         renderProjects();
+        
     }
 }
 
@@ -62,6 +62,8 @@ const addProjectsToDom = () => {
         const projectsContainer = document.querySelector('#projects-container');
         const projectDiv = document.createElement('div');
         const projectButton = document.createElement('button');
+
+        projectButton.setAttribute('data-id', projectArr[i].projId);
         projectDiv.classList.add('project');
         
         if(projectArr[i].selected === true){
@@ -93,4 +95,15 @@ const renderProjects = () => {
     addProjectsToDom();
 }
 
-export {newProjectModal} ;
+const renderProjectContent = () => {
+    //Get project title and desc
+    //Get todos from project
+    //Create Dom elements for all of this
+    //Add new task button
+    //Add event listener to new task button
+    //Add event listeners to todo edit and delete buttons
+    //
+
+}
+
+export {newProjectModal, renderProjects} ;

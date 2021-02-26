@@ -1,29 +1,27 @@
+import { renderProjects } from './DOMMethods'
 
+const projectArr = [];
 
-const projectArr = [
-   {
-        title: 'Default',
-        desc: '',
-        selected: true,
-        todoArr: [],
-    }
-];
-
-const projectFactory = (title, desc) => {
-    return { title, desc, selected: false, todoArr: [] };
+const projectFactory = (title, desc, projId) => {
+    return {projId,  
+            title, 
+            desc, 
+            selected: false, 
+            todoArr: [] 
+        };
 }
 
-const addProjToArr = (title, desc) => {
-    projectArr.push(projectFactory(title, desc));
+const addProjToArr = (title, desc, projId) => {
+    projectArr.push(projectFactory(title, desc, projId));
 }
 
 const addTodoToProj = (proj, title, desc, date, prio) => {
     proj.todoArr.push({ title, desc, date, prio });
 }
 
-const updateProjectSelect = (projectName) => {
+const updateProjectSelect = (projectId) => {
     projectArr.forEach(project => {
-        if(project.title === projectName){
+        if(project.projId === projectId){
             project.selected = true;
         }else {
             project.selected = false
@@ -31,6 +29,16 @@ const updateProjectSelect = (projectName) => {
     })
 }
 
+const generateProjectId = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
 
-export { addProjToArr, addTodoToProj, updateProjectSelect, projectArr };
+const init = () => {
+    addProjToArr('Default', 'This is a default project', generateProjectId());
+    renderProjects();
+}
+
+
+
+export { init, addProjToArr, addTodoToProj, generateProjectId, updateProjectSelect, projectArr };
 
