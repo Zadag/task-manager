@@ -106,20 +106,45 @@ const renderProjectContent = () => {
 
 }
 
-const createTodoElements = (title, desc, date, prio, completed) => {
+const createTodoElements = (title, desc, date, completed) => {
     const todo = document.createElement('div');
     const todoLeft = document.createElement('div');
     const todoRight = document.createElement('div');
-
     const checkItOff = docuemnt.createElement('div');
     const todoTitle = document.createElement('p');
     const dueDate = document.createElement('p');
     const todoIconEdit = document.createElement('img');
     const todoIconDelete = document.createElement('img');
 
-    
+    todo.classList.add('todo');
+    todoLeft.classList.add('todo-left');
+    todoRight.classList.add('todo-right');
 
+    if(completed === true){
+        checkItOff.classList.add('checked-off');
+    }else{
+        checkItOff.classList.add('check-it-off');
+    }
 
+    todoTitle.classList.add('todo-title');
+    dueDate.classList.add('due-date');
+    todoIconEdit.classList.add('todo-icon');
+    todoIconDelete.classList.add('todo-icon');
+
+    todoIconEdit.src = 'icons/edit.png';
+    todoIconDelete.src = 'icons/trash.png';
+
+    todoTitle.textContent = title;
+    dueDate.textContent = date;
+
+    todoIconEdit.addEventListener('click', () => {
+        //launch modal
+    })
+
+    todoIconDelete.addEventListener('click', () => {
+        //Remove this todo from project.todos
+        //Re-render todos
+    })
 }
 
 export {newProjectModal, renderProjects} ;
