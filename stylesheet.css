@@ -175,6 +175,15 @@ table {
 	align-items: center;
 }
 
+.todo-right {
+	display: flex;
+	align-items: center;
+}
+
+.due-date {
+	margin-right: 3vw;
+}
+
 .todo-project-details {
 	display: flex;
 	flex-direction: column;
