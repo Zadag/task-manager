@@ -35,13 +35,10 @@ const generateUniqueId = () => {
 
 
 const getProjectDetails = (project) => {
-    console.log('this' + project);
-    console.log(projectArr);
     let projectObject = {};
     projectArr.forEach(proj => {
         if(proj.projId === project){
             projectObject = proj;
-            console.log(projectObject);
         }
     })
     return projectObject;
