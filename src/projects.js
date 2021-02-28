@@ -1,4 +1,4 @@
-import { renderProjects } from './DOMMethods'
+
 
 const projectArr = [];
 
@@ -33,11 +33,6 @@ const generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
-const init = () => {
-    addProjToArr('Default', 'This is a default project', generateUniqueId());
-    addTodoToProj(projectArr[0], '_yilklj', 'test', 'testing', 'date', false);
-    renderProjects();
-}
 
 const getProjectDetails = (project) => {
     console.log('this' + project);
@@ -53,5 +48,5 @@ const getProjectDetails = (project) => {
 }
 
 
-export { init, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
+export { getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 
