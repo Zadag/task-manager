@@ -16,7 +16,6 @@ const init = () => {
     addProjToArr('Default', 'This is a default project', generateUniqueId());
     addTodoToProj(projectArr[0], '_yilklj', 'test', 'testing', 'date', false);
     renderProjects();
-    //selectProject(document.querySelector('.project-button').getAttribute('data-id'));
 }
 
 init();

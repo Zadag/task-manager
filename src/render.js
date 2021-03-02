@@ -48,21 +48,23 @@ const renderProjects = () => {
     addProjectsToDom();
 }
 
-const renderProjectContent = (project) => {
+const renderProjectContent = (projectId) => {
     removeTodoContentFromDom();
     //Get project title and desc
     
-    if(getProjectDetails(project)){
-        const projectDetails = getProjectDetails(project);
+    if(getProjectDetails(projectId)){
+        const projectDetails = getProjectDetails(projectId);
         const projectTitle = projectDetails.title;
         const projectDesc = projectDetails.desc;
         //Get todos from project
         const projectTodoArr = projectDetails.todoArr;
+        //Add new task button and project info
+        addProjectTitleAndDesc(projectTitle, projectDesc);
+        //Add todos to DOM
         createTodoElements(projectTodoArr);
-        //Add new task button
-        //Add event listener to new task button
-        //Add event listeners to todo edit and delete buttons
-        //        
+        
+        
+       
     }
 
 }
@@ -111,6 +113,7 @@ const createTodoElements = (todoArr) => {
     
         todoIconEdit.addEventListener('click', () => {
             //launch modal
+            console.log('test');
         })
     
         todoIconDelete.addEventListener('click', () => {
@@ -126,6 +129,29 @@ const removeTodoContentFromDom = () => {
     while(todosContainer.firstChild){
         todosContainer.removeChild(todosContainer.firstChild);
     }
+}
+
+const addProjectTitleAndDesc = (projectTitle, projectDesc) => {
+    const todosContainer = document.querySelector('#todos-container');
+
+    const todoProjectDetails = document.createElement('div');
+    const todoProjectHeader = document.createElement('p');
+    const todoProjectAbout = document.createElement('p');
+    const newTodoButton = document.createElement('button');
+
+    todoProjectDetails.classList.add('todo-project-details');
+    todoProjectHeader.classList.add('todo-project-header');
+    todoProjectAbout.classList.add('todo-project-about');
+    newTodoButton.classList.add('new-todo-button');
+
+    todosContainer.appendChild(todoProjectDetails);
+    todosContainer.appendChild(newTodoButton);
+    todoProjectDetails.appendChild(todoProjectHeader);
+    todoProjectDetails.appendChild(todoProjectAbout);
+
+    todoProjectHeader.textContent = projectTitle;
+    todoProjectAbout.textContent = projectDesc;
+    newTodoButton.textContent = 'Add a task';
 }
 
 export { renderProjects } ;

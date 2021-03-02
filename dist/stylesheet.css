@@ -155,6 +155,7 @@ table {
 
 .todo-icon {
 	margin-right: 2vh;
+	cursor: pointer;
 }
 
 .check-it-off {
@@ -164,6 +165,7 @@ table {
 	border-style: solid;
 	border-radius: 50%;
 	border-width: 1px;
+	cursor: pointer;
 }
 
 .todo-title {

@@ -34,10 +34,10 @@ const generateUniqueId = () => {
 }
 
 
-const getProjectDetails = (project) => {
+const getProjectDetails = (projectId) => {
     let projectObject = {};
     projectArr.forEach(proj => {
-        if(proj.projId === project){
+        if(proj.projId === projectId){
             projectObject = proj;
         }
     })
