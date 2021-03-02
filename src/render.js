@@ -1,3 +1,4 @@
+import { editTodoModal } from './modals';
 import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId } from './projects'
 
 
@@ -50,8 +51,6 @@ const renderProjects = () => {
 
 const renderProjectContent = (projectId) => {
     removeTodoContentFromDom();
-    //Get project title and desc
-    
     if(getProjectDetails(projectId)){
         const projectDetails = getProjectDetails(projectId);
         const projectTitle = projectDetails.title;
@@ -112,13 +111,16 @@ const createTodoElements = (todoArr) => {
         todoRight.appendChild(todoIconDelete);
     
         todoIconEdit.addEventListener('click', () => {
-            //launch modal
+            if(!document.querySelector('todo-modal-conatiner')){
+                editTodoModal();    
+            }
             console.log('test');
         })
     
         todoIconDelete.addEventListener('click', () => {
             //Remove this todo from project.todos
             //Render todos
+            console.log('testing');
         })
     })
 
