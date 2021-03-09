@@ -82,6 +82,7 @@ const editTodoModal = () => {
     submit.addEventListener('click', () => {
         //update project.todo
         //render todos
+        content.removeChild(modalContainer);
     })
     cancel.addEventListener('click', () => {
         content.removeChild(modalContainer);

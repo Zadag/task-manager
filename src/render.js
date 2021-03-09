@@ -49,6 +49,7 @@ const renderProjects = () => {
     addProjectsToDom();
 }
 
+//projectId is a single project object
 const renderProjectContent = (projectId) => {
     removeTodoContentFromDom();
     if(getProjectDetails(projectId)){
@@ -68,8 +69,10 @@ const renderProjectContent = (projectId) => {
 
 }
 
+//todoArr is one of the todo arrays
 const createTodoElements = (todoArr) => {
     todoArr.forEach(todoObject => {
+        console.log(todoObject.todoId);
         const todosContainer = document.querySelector('#todos-container');
         const todo = document.createElement('div');
         const todoLeft = document.createElement('div');
@@ -81,6 +84,7 @@ const createTodoElements = (todoArr) => {
         const todoIconDelete = document.createElement('img');
     
         todo.classList.add('todo');
+        todo.setAttribute('data-id', todoObject.todoId);
         todoLeft.classList.add('todo-left');
         todoRight.classList.add('todo-right');
     
@@ -109,18 +113,22 @@ const createTodoElements = (todoArr) => {
         todoRight.appendChild(dueDate);
         todoRight.appendChild(todoIconEdit);
         todoRight.appendChild(todoIconDelete);
-    
+        
+        checkItOff.addEventListener('click', () => {
+            console.log();
+        })
+
         todoIconEdit.addEventListener('click', () => {
             if(!document.querySelector('todo-modal-conatiner')){
                 editTodoModal();    
             }
-            console.log('test');
+            console.log('edit');
         })
     
         todoIconDelete.addEventListener('click', () => {
             //Remove this todo from project.todos
             //Render todos
-            console.log('testing');
+            console.log('delete');
         })
     })
 

@@ -14,7 +14,7 @@ newProjectButton.addEventListener('click', () => {
 
 const init = () => {
     addProjToArr('Default', 'This is a default project', generateUniqueId());
-    addTodoToProj(projectArr[0], '_yilklj', 'test', 'testing', 'date', false);
+    addTodoToProj(projectArr[0], generateUniqueId(), 'test', 'testing', 'date', false);
     renderProjects();
 }
 
