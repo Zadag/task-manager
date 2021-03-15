@@ -1,4 +1,4 @@
-import { addProjToArr, generateUniqueId } from './projects'
+import { addProjToArr, generateUniqueId, removeTodoFromTodoArr } from './projects'
 import { renderProjects } from './render'
 
 
@@ -81,6 +81,7 @@ const editTodoModal = () => {
 
     submit.addEventListener('click', () => {
         //update project.todo
+        removeTodoFromTodoArr();
         //render todos
         content.removeChild(modalContainer);
     })
@@ -90,4 +91,43 @@ const editTodoModal = () => {
 
 }
 
-export { newProjectModal, editTodoModal }
+const createTodoModal = () => {
+    const newTodoButton = document.querySelector('.new-todo-button');
+    const todosContainer = document.querySelector('#todos-container');
+    const modalContainer = document.createElement('div');
+    const titleInput = document.createElement('input');
+    const descInput = document.createElement('input');
+    const dateInput = document.createElement('input');
+    const submit = document.createElement('button');
+    const cancel = document.createElement('button');
+
+    modalContainer.classList.add('todo-modal-container');
+    titleInput.classList.add('todo-modal-title');
+    descInput.classList.add('todo-modal-desc');
+    dateInput.classList.add('todo-modal-date');
+    submit.classList.add('todo-modal-submit');
+    cancel.classList.add('todo-modal-cancel');
+
+    titleInput.type = 'text';
+    descInput.type = 'text';
+    dateInput.type = 'date';
+
+    newTodoButton.parentNode.insertBefore(modalContainer, newTodoButton.nextSibling);
+    modalContainer.appendChild(titleInput);
+    modalContainer.appendChild(descInput);
+    modalContainer.appendChild(dateInput);
+    modalContainer.appendChild(submit);
+    modalContainer.appendChild(cancel);
+
+    submit.addEventListener('click', () => {
+        //update project.todo
+        //removeTodoFromTodoArr();
+        //render todos
+        todosContainer.removeChild(modalContainer);
+    })
+    cancel.addEventListener('click', () => {
+        todosContainer.removeChild(modalContainer);
+    })
+}
+
+export { newProjectModal, editTodoModal, createTodoModal }

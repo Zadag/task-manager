@@ -1,4 +1,4 @@
-import { editTodoModal } from './modals';
+import { editTodoModal, createTodoModal } from './modals';
 import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId } from './projects'
 
 
@@ -162,6 +162,10 @@ const addProjectTitleAndDesc = (projectTitle, projectDesc) => {
     todoProjectHeader.textContent = projectTitle;
     todoProjectAbout.textContent = projectDesc;
     newTodoButton.textContent = 'Add a task';
+
+    newTodoButton.addEventListener('click', () => {
+        createTodoModal();
+    })
 }
 
 export { renderProjects } ;
