@@ -51,6 +51,7 @@ const renderProjects = () => {
 
 //projectId is a single project object
 const renderProjectContent = (projectId) => {
+    console.log(`this is projectId ${projectId}`);
     removeTodoContentFromDom();
     if(getProjectDetails(projectId)){
         const projectDetails = getProjectDetails(projectId);
@@ -59,7 +60,7 @@ const renderProjectContent = (projectId) => {
         //Get todos from project
         const projectTodoArr = projectDetails.todoArr;
         //Add new task button and project info
-        addProjectTitleAndDesc(projectTitle, projectDesc);
+        addProjectTitleAndDesc(projectTitle, projectDesc, projectId);
         //Add todos to DOM
         createTodoElements(projectTodoArr);
         
@@ -141,7 +142,7 @@ const removeTodoContentFromDom = () => {
     }
 }
 
-const addProjectTitleAndDesc = (projectTitle, projectDesc) => {
+const addProjectTitleAndDesc = (projectTitle, projectDesc, projectId) => {
     const todosContainer = document.querySelector('#todos-container');
 
     const todoProjectDetails = document.createElement('div');
@@ -164,8 +165,9 @@ const addProjectTitleAndDesc = (projectTitle, projectDesc) => {
     newTodoButton.textContent = 'Add a task';
 
     newTodoButton.addEventListener('click', () => {
-        createTodoModal();
+        console.log(projectId);
+        createTodoModal(projectId);
     })
 }
 
-export { renderProjects } ;
+export { renderProjects, renderProjectContent } ;

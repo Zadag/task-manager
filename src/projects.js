@@ -15,8 +15,8 @@ const addProjToArr = (title, desc, projId) => {
     projectArr.push(projectFactory(title, desc, projId));
 }
 
-const addTodoToProj = (proj, todoId, title, desc, date, completed) => {
-    proj.todoArr.push({ todoId, title, desc, date, completed });
+const addTodoToProj = (proj, projId, title, desc, date) => {
+    proj.todoArr.push({ todoId: generateUniqueId(), projId, title, desc, date, completed: false });
 }
 
 const removeTodoFromTodoArr = (proj, todoId) => {
@@ -42,6 +42,7 @@ const updateProjectSelect = (projectId) => {
 const generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
+
 
 
 const getProjectDetails = (projectId) => {
