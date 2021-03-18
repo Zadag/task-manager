@@ -1,4 +1,4 @@
-import { addProjToArr, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
+import { addProjToArr, editTodo, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
 import { renderProjects, renderProjectContent } from './render'
 
 
@@ -51,7 +51,9 @@ const newProjectModal = () => {
     cancel.addEventListener('click', removeModal);
 };
 
-const editTodoModal = () => {
+const editTodoModal = (projId, todoId) => {
+    const proj = getProjectDetails(projId);
+
     const content = document.querySelector('#content');
 
     const modalContainer = document.createElement('div');
@@ -81,7 +83,9 @@ const editTodoModal = () => {
 
     submit.addEventListener('click', () => {
         //update project.todo
-        removeTodoFromTodoArr();
+        console.log(projId);
+        editTodo(proj, todoId, titleInput.value, descInput.value, dateInput.value);
+        renderProjectContent(projId);
         //render todos
         content.removeChild(modalContainer);
     })
@@ -123,7 +127,6 @@ const createTodoModal = (projectId) => {
     submit.addEventListener('click', () => {
         const project = getProjectDetails(projectId);
         //update project.todo
-        console.log(projectId);
         addTodoToProj(project, projectId, titleInput.value, descInput.value, dateInput.value);
         //render todos
         renderProjectContent(projectId);

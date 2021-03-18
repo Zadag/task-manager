@@ -19,14 +19,22 @@ const addTodoToProj = (proj, projId, title, desc, date) => {
     proj.todoArr.push({ todoId: generateUniqueId(), projId, title, desc, date, completed: false });
 }
 
-const removeTodoFromTodoArr = (proj, todoId) => {
-    let index = proj.todoArr.find(todo => {
-        todo.todoId === todoId;
-    }).indexOf();
+const removeTodoFromTodoArr = (projId, todoId) => {
+    let proj = getProjectDetails(projId);
+    
+    let index = proj.todoArr.findIndex(todo => {
+        return todo.todoId === todoId;
+    })
 
-    console.log(index);
+    proj.todoArr.splice(index, 1);
+}
 
-    //proj.todoArr.splice(index, 1);
+const editTodo = (proj, todoId, title, desc, date) => {
+    let todo = proj.todoArr.find(todoObj => todoObj.todoId === todoId);
+
+    todo.title = title;
+    todo.desc = desc;
+    todo.date = date;
 }
 
 const updateProjectSelect = (projectId) => {
@@ -56,5 +64,5 @@ const getProjectDetails = (projectId) => {
 }
 
 
-export { removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
+export { editTodo, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 

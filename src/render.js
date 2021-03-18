@@ -73,7 +73,7 @@ const renderProjectContent = (projectId) => {
 //todoArr is one of the todo arrays
 const createTodoElements = (todoArr) => {
     todoArr.forEach(todoObject => {
-        console.log(todoObject.todoId);
+        console.log(todoObject);
         const todosContainer = document.querySelector('#todos-container');
         const todo = document.createElement('div');
         const todoLeft = document.createElement('div');
@@ -121,7 +121,7 @@ const createTodoElements = (todoArr) => {
 
         todoIconEdit.addEventListener('click', () => {
             if(!document.querySelector('todo-modal-conatiner')){
-                editTodoModal();    
+                editTodoModal(todoObject.projId, todoObject.todoId);    
             }
             console.log('edit');
         })
