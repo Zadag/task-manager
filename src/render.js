@@ -1,5 +1,5 @@
 import { editTodoModal, createTodoModal } from './modals';
-import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId } from './projects'
+import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr } from './projects'
 
 
 const selectProject = (e) => {
@@ -128,7 +128,9 @@ const createTodoElements = (todoArr) => {
     
         todoIconDelete.addEventListener('click', () => {
             //Remove this todo from project.todos
+            removeTodoFromTodoArr(todoObject.projId, todoObject.todoId);
             //Render todos
+            renderProjectContent(todoObject.projId);
             console.log('delete');
         })
     })
