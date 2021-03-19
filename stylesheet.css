@@ -164,7 +164,18 @@ table {
 	width: 4vh;
 	border-style: solid;
 	border-radius: 50%;
-	border-width: 1px;
+	border-width: 2px;
+	cursor: pointer;
+}
+
+.checked-off {
+	margin-left: 1vh;
+	height: 4vh;
+	width: 4vh;
+	border-style: solid;
+	border-radius: 50%;
+	border-width: 2px;
+	background-color: black;
 	cursor: pointer;
 }
 
