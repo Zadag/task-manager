@@ -63,6 +63,14 @@ const getProjectDetails = (projectId) => {
     return projectObject;
 }
 
+const toggleTodoCompletion = (projId, todoId) => {
+    let proj = getProjectDetails(projId);
+    let todo = proj.todoArr.find(todoObj => todoObj.todoId === todoId);
+    if(todo.completed === false){
+        todo.completed = true;
+    }else todo.completed = false;
+}
 
-export { editTodo, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
+
+export { editTodo, toggleTodoCompletion, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 

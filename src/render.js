@@ -1,5 +1,5 @@
 import { editTodoModal, createTodoModal } from './modals';
-import { addProjToArr, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr } from './projects'
+import { addProjToArr, toggleTodoCompletion, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr } from './projects'
 
 
 const selectProject = (e) => {
@@ -117,6 +117,8 @@ const createTodoElements = (todoArr) => {
         
         checkItOff.addEventListener('click', () => {
             console.log();
+            toggleTodoCompletion(todoObject.projId, todoObject.todoId)
+            renderProjectContent(todoObject.projId);
         })
 
         todoIconEdit.addEventListener('click', () => {
