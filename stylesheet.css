@@ -256,3 +256,41 @@ table {
 	height: 5vh;
 	width: 50%;
 }
+
+.todo-modal-container {
+	margin-top: 3vh;
+	display: flex;
+	flex-direction: column;
+	height: 20vh;
+	width: 40vw;
+}
+
+.todo-modal-title {
+	height: 3vh;
+	width: 40vw;
+}
+
+.todo-modal-desc {
+	height: 8vh;
+	width: 40vw;
+}
+
+.todo-modal-date {
+
+}
+
+.todo-modal-buttons {
+	display: flex;
+}
+
+.todo-modal-submit {
+	background-color: lightgreen;
+	height: 5vh;
+	width: 50%;
+}
+
+.todo-modal-cancel {
+	background-color: rgb(238, 62, 62);
+	height: 5vh;
+	width: 50%;
+}
