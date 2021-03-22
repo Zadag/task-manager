@@ -2,7 +2,7 @@ import { addProjToArr, getTodo, editTodo, getProjectDetails, generateUniqueId, r
 import { renderProjects, renderProjectContent } from './render'
 
 
-const newProjectModal = (edit) => {
+const newProjectModal = () => {
     const content = document.querySelector('#content');
     const newProjectButton = document.querySelector('.new-project');
 
@@ -77,8 +77,9 @@ const editTodoModal = (projId, todoId) => {
     dateInput.type = 'date';
 
     titleInput.value = todo.title;
-    todo.description ? descInput.value = todo.description : descInput.placeholder = "description";
-
+    if(todo.desc) {
+        descInput.value = todo.desc;
+    } else { descInput.placeholder = "description";} 
     submit.textContent = "Submit";
     cancel.textContent = "Cancel";
 
@@ -92,7 +93,6 @@ const editTodoModal = (projId, todoId) => {
 
     submit.addEventListener('click', () => {
         //update project.todo
-        console.log(projId);
         editTodo(proj, todoId, titleInput.value, descInput.value, dateInput.value);
         renderProjectContent(projId);
         //render todos
