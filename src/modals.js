@@ -1,4 +1,4 @@
-import { addProjToArr, editTodo, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
+import { addProjToArr, getTodo, editTodo, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
 import { renderProjects, renderProjectContent } from './render'
 
 
@@ -53,15 +53,17 @@ const newProjectModal = () => {
 
 const editTodoModal = (projId, todoId) => {
     const proj = getProjectDetails(projId);
+    const todo = getTodo(proj, todoId);
 
     const content = document.querySelector('#content');
 
     const modalContainer = document.createElement('div');
     const titleInput = document.createElement('input');
-    const descInput = document.createElement('input');
+    const descInput = document.createElement('textarea');
     const dateInput = document.createElement('input');
     const submit = document.createElement('button');
     const cancel = document.createElement('button');
+    const buttonsContainer = document.createElement('div');
 
     modalContainer.classList.add('todo-modal-container');
     titleInput.classList.add('todo-modal-title');
@@ -69,17 +71,24 @@ const editTodoModal = (projId, todoId) => {
     dateInput.classList.add('todo-modal-date');
     submit.classList.add('todo-modal-submit');
     cancel.classList.add('todo-modal-cancel');
+    buttonsContainer.classList.add('todo-modal-buttons');
 
     titleInput.type = 'text';
-    descInput.type = 'text';
     dateInput.type = 'date';
+
+    titleInput.value = todo.title;
+    todo.description ? descInput.value = todo.description : descInput.placeholder = "description";
+
+    submit.textContent = "Submit";
+    cancel.textContent = "Cancel";
 
     content.appendChild(modalContainer);
     modalContainer.appendChild(titleInput);
     modalContainer.appendChild(descInput);
     modalContainer.appendChild(dateInput);
-    modalContainer.appendChild(submit);
-    modalContainer.appendChild(cancel);
+    modalContainer.appendChild(buttonsContainer);
+    buttonsContainer.appendChild(submit);
+    buttonsContainer.appendChild(cancel);
 
     submit.addEventListener('click', () => {
         //update project.todo

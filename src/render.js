@@ -1,5 +1,5 @@
 import { editTodoModal, createTodoModal } from './modals';
-import { addProjToArr, toggleTodoCompletion, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr } from './projects'
+import { addProjToArr, toggleTodoCompletion, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr, deleteProject } from './projects'
 
 
 const selectProject = (e) => {
@@ -149,24 +149,46 @@ const removeTodoContentFromDom = () => {
 const addProjectTitleAndDesc = (projectTitle, projectDesc, projectId) => {
     const todosContainer = document.querySelector('#todos-container');
 
+    const todoProjectButtons = document.createElement('div');
+    const todoProjectEdit = document.createElement('button');
+    const todoProjectDelete = document.createElement('button');
     const todoProjectDetails = document.createElement('div');
     const todoProjectHeader = document.createElement('p');
     const todoProjectAbout = document.createElement('p');
     const newTodoButton = document.createElement('button');
 
+    todoProjectButtons.classList.add('todo-project-buttons');
+    todoProjectEdit.classList.add('todo-project-edit');
+    todoProjectDelete.classList.add('todo-project-delete');
     todoProjectDetails.classList.add('todo-project-details');
     todoProjectHeader.classList.add('todo-project-header');
     todoProjectAbout.classList.add('todo-project-about');
     newTodoButton.classList.add('new-todo-button');
 
     todosContainer.appendChild(todoProjectDetails);
+    todosContainer.appendChild(todoProjectButtons);
     todosContainer.appendChild(newTodoButton);
     todoProjectDetails.appendChild(todoProjectHeader);
     todoProjectDetails.appendChild(todoProjectAbout);
+    todoProjectButtons.appendChild(todoProjectEdit);
+    todoProjectButtons.appendChild(todoProjectDelete);
 
     todoProjectHeader.textContent = projectTitle;
     todoProjectAbout.textContent = projectDesc;
     newTodoButton.textContent = 'Add a task';
+    todoProjectEdit.textContent = "Edit this project";
+    todoProjectDelete.textContent = "Delete this project";
+
+    todoProjectEdit.addEventListener('click', () => {
+        //Edit this project using projectId
+    });
+
+    todoProjectDelete.addEventListener('click', () => {
+        //Delete this project using projectId
+        deleteProject(projectId);
+        renderProjects();
+        removeTodoContentFromDom();
+    });
 
     newTodoButton.addEventListener('click', () => {
         console.log(projectId);

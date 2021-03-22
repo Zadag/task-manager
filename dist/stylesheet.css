@@ -259,10 +259,14 @@ table {
 
 .todo-modal-container {
 	margin-top: 3vh;
+	left: 50%;
+	top: 25%;
+	position: absolute;
 	display: flex;
 	flex-direction: column;
-	height: 20vh;
+	height: 25vh;
 	width: 40vw;
+	transform: translateX(-50%);
 }
 
 .todo-modal-title {
@@ -294,3 +298,4 @@ table {
 	height: 5vh;
 	width: 50%;
 }
+

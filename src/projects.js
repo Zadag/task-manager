@@ -29,6 +29,10 @@ const removeTodoFromTodoArr = (projId, todoId) => {
     proj.todoArr.splice(index, 1);
 }
 
+const getTodo = (proj, todoId) => {
+    return proj.todoArr.find(todoObj => todoObj.todoId === todoId);
+}
+
 const editTodo = (proj, todoId, title, desc, date) => {
     let todo = proj.todoArr.find(todoObj => todoObj.todoId === todoId);
 
@@ -51,7 +55,12 @@ const generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
 }
 
-
+const deleteProject = (projId) => {
+    let proj = getProjectDetails(projId);
+    let index = projectArr.findIndex(proj => projectArr.projId === projId);
+    projectArr.splice(index, 1);
+    console.log(projectArr);
+}
 
 const getProjectDetails = (projectId) => {
     let projectObject = {};
@@ -72,5 +81,5 @@ const toggleTodoCompletion = (projId, todoId) => {
 }
 
 
-export { editTodo, toggleTodoCompletion, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
+export { editTodo, deleteProject, getTodo, toggleTodoCompletion, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 
