@@ -148,7 +148,7 @@ const removeTodoContentFromDom = () => {
 
 const addProjectTitleAndDesc = (projectTitle, projectDesc, projectId) => {
     const todosContainer = document.querySelector('#todos-container');
-
+    console.log(projectId);
     const todoProjectButtons = document.createElement('div');
     const todoProjectEdit = document.createElement('button');
     const todoProjectDelete = document.createElement('button');
@@ -180,7 +180,7 @@ const addProjectTitleAndDesc = (projectTitle, projectDesc, projectId) => {
     todoProjectDelete.textContent = "Delete this project";
 
     todoProjectEdit.addEventListener('click', () => {
-        //Edit this project using projectId
+        
     });
 
     todoProjectDelete.addEventListener('click', () => {

@@ -56,8 +56,7 @@ const generateUniqueId = () => {
 }
 
 const deleteProject = (projId) => {
-    let proj = getProjectDetails(projId);
-    let index = projectArr.findIndex(proj => projectArr.projId === projId);
+    let index = projectArr.findIndex(proj => proj.projId === projId);
     projectArr.splice(index, 1);
     console.log(projectArr);
 }

@@ -2,7 +2,7 @@ import { addProjToArr, getTodo, editTodo, getProjectDetails, generateUniqueId, r
 import { renderProjects, renderProjectContent } from './render'
 
 
-const newProjectModal = () => {
+const newProjectModal = (edit) => {
     const content = document.querySelector('#content');
     const newProjectButton = document.querySelector('.new-project');
 
