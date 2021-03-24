@@ -51,12 +51,13 @@ const newProjectModal = (edit=0, projId=0) => {
 
     //Adds project to projects.js and updates DOM
     submit.addEventListener('click', () => {
-        if(edit) editProject(projId, title.value, description.value);
-        
+        if(edit) {
+            editProject(projId, title.value, description.value);
+            renderProjectContent(projId);
+        }
         if(!edit && !projId) addProjToArr(title.value, description.value, generateUniqueId());
         
         renderProjects();
-        renderProjectContent(projId);
         removeModal();
     });
     cancel.addEventListener('click', removeModal);
