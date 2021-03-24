@@ -211,6 +211,7 @@ table {
 }
 
 .todo-project-about {
+	margin-top: 2vh;
 	font-size: 3vh;
 }
 
@@ -279,8 +280,21 @@ table {
 	width: 40vw;
 }
 
-.todo-modal-date {
+.todo-project-buttons {
+	margin-top: 3vh;
+	display: flex;
+	justify-content: space-between;
+	width: 25vw;
+}
 
+.todo-project-edit {
+	width: 10vw;
+	height: 3vh;
+}
+
+.todo-project-delete {
+	width: 10vw;
+	height: 3vh;
 }
 
 .todo-modal-buttons {
