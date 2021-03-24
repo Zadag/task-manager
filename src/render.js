@@ -1,4 +1,4 @@
-import { editTodoModal, createTodoModal } from './modals';
+import { editTodoModal, createTodoModal, newProjectModal } from './modals';
 import { addProjToArr, toggleTodoCompletion, getProjectDetails, updateProjectSelect, projectArr, generateUniqueId, removeTodoFromTodoArr, deleteProject } from './projects'
 
 
@@ -47,6 +47,7 @@ const removeProjectsFromDom = () => {
 const renderProjects = () => {
     removeProjectsFromDom();
     addProjectsToDom();
+    console.log(projectArr);
 }
 
 //projectId is a single project object
@@ -63,15 +64,14 @@ const renderProjectContent = (projectId) => {
         addProjectTitleAndDesc(projectTitle, projectDesc, projectId);
         //Add todos to DOM
         createTodoElements(projectTodoArr);
-        
-        
-       
+          
     }
 
 }
 
 //todoArr is one of the todo arrays
 const createTodoElements = (todoArr) => {
+    //if(!todoArr) return;
     todoArr.forEach(todoObject => {
         console.log(todoObject);
         const todosContainer = document.querySelector('#todos-container');
@@ -180,7 +180,7 @@ const addProjectTitleAndDesc = (projectTitle, projectDesc, projectId) => {
     todoProjectDelete.textContent = "Delete this project";
 
     todoProjectEdit.addEventListener('click', () => {
-        
+        newProjectModal(true, projectId);
     });
 
     todoProjectDelete.addEventListener('click', () => {

@@ -1,8 +1,8 @@
-import { addProjToArr, getTodo, editTodo, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
+import { addProjToArr, editProject, getTodo, editTodo, getProjectDetails, generateUniqueId, removeTodoFromTodoArr, addTodoToProj } from './projects'
 import { renderProjects, renderProjectContent } from './render'
 
 
-const newProjectModal = () => {
+const newProjectModal = (edit=0, projId=0) => {
     const content = document.querySelector('#content');
     const newProjectButton = document.querySelector('.new-project');
 
@@ -22,6 +22,13 @@ const newProjectModal = () => {
     buttonsContainer.classList.add('new-project-modal-buttons');
     submit.classList.add('new-project-modal-submit');
     cancel.classList.add('new-project-modal-cancel');
+
+    if(edit && projId){
+        console.log("edit and projId are truthy");
+        const proj =  getProjectDetails(projId);
+        title.value = proj.title;
+        description.value = proj.desc;
+    }
 
     title.setAttribute('placeholder', 'Project Name');
     description.setAttribute('placeholder', 'Project Description');
@@ -44,8 +51,12 @@ const newProjectModal = () => {
 
     //Adds project to projects.js and updates DOM
     submit.addEventListener('click', () => {
-        addProjToArr(title.value, description.value, generateUniqueId());
+        if(edit) editProject(projId, title.value, description.value);
+        
+        if(!edit && !projId) addProjToArr(title.value, description.value, generateUniqueId());
+        
         renderProjects();
+        renderProjectContent(projId);
         removeModal();
     });
     cancel.addEventListener('click', removeModal);

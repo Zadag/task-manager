@@ -15,6 +15,16 @@ const addProjToArr = (title, desc, projId) => {
     projectArr.push(projectFactory(title, desc, projId));
 }
 
+const editProject = (projId, newTitle, newDesc) => {
+    console.log('editing project object');
+    const proj = getProjectDetails(projId);
+    console.log(newTitle);
+    console.log(proj);
+    proj.title = newTitle;
+    proj.desc = newDesc;
+    console.log(proj);
+}
+
 const addTodoToProj = (proj, projId, title, desc, date) => {
     proj.todoArr.push({ todoId: generateUniqueId(), projId, title, desc, date, completed: false });
 }
@@ -80,5 +90,5 @@ const toggleTodoCompletion = (projId, todoId) => {
 }
 
 
-export { editTodo, deleteProject, getTodo, toggleTodoCompletion, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
+export { editTodo, editProject, deleteProject, getTodo, toggleTodoCompletion, removeTodoFromTodoArr, getProjectDetails, addProjToArr, addTodoToProj, generateUniqueId, updateProjectSelect, projectArr };
 
